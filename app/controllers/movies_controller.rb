@@ -7,7 +7,14 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.all
+    @title_link_class = ""
+    @release_date_link_class = ""
+    if params[:sort] == nil
+      @movies = Movie.all
+    else
+      @movies = Movie.order("#{params[:sort]} ASC").all
+      self.instance_variable_set("@#{params[:sort]}_link_class", "hilite")
+    end
   end
 
   def new
