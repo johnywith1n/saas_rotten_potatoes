@@ -10,10 +10,11 @@ class MoviesController < ApplicationController
     @all_ratings = Movie.get_all_ratings
     @title_link_class = ""
     @release_date_link_class = ""
+    @selected_ratings = params["ratings"] == nil ? @all_ratings : params["ratings"].keys
     if params[:sort] == nil
-      @movies = Movie.all
+      @movies = Movie.where("rating IN (?)", @selected_ratings).all
     else
-      @movies = Movie.order("#{params[:sort]} ASC").all
+      @movies = Movie.where("rating IN (?)", @selected_ratings).order("#{params[:sort]} ASC").all
       self.instance_variable_set("@#{params[:sort]}_link_class", "hilite")
     end
   end
