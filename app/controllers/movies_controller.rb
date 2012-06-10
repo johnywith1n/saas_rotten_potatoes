@@ -7,6 +7,23 @@ class MoviesController < ApplicationController
   end
 
   def index
+    if params[:sort] != nil
+      session[:sort] = params[:sort]
+    elsif params[:sort] == nil and session[:sort] != nil
+      params[:sort] = session[:sort]
+      @do_redirect = true
+    end
+    if params["ratings"] != nil
+      session["ratings"] = params["ratings"]
+    elsif params["ratings"] == nil and session["ratings"] != nil
+      params["ratings"] = session["ratings"]
+      @do_redirect = true
+    end
+    
+    if @do_redirect
+      redirect_to movies_path(params)
+    end
+      
     @all_ratings = Movie.get_all_ratings
     @title_link_class = ""
     @release_date_link_class = ""
