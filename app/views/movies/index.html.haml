@@ -11,15 +11,9 @@
 %table#movies
   %thead
     %tr
-<<<<<<< HEAD
       %th{:class => @title_link_class}= link_to "Movie Title", movies_path(params.merge(:sort => "title")), :id => "title_header"
       %th Rating
       %th{:class => @release_date_link_class}= link_to "Release Date", movies_path(params.merge(:sort => "release_date")), :id => "release_date_header"
-=======
-      %th{:class => @title_link_class}= link_to "Movie Title", movies_path(:sort => "title"), :id => "title_header"
-      %th Rating
-      %th{:class => @release_date_link_class}= link_to "Release Date", movies_path(:sort => "release_date"), :id => "release_date_header"
->>>>>>> ae3a194cf040d2e73ac86d0516a6944b6ae21c65
       %th More Info
   %tbody
     - @movies.each do |movie|
