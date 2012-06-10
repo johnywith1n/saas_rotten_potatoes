@@ -7,6 +7,7 @@ class MoviesController < ApplicationController
   end
 
   def index
+    @all_ratings = Movie.get_all_ratings
     @title_link_class = ""
     @release_date_link_class = ""
     if params[:sort] == nil
